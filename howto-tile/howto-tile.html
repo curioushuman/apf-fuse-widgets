@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+  <link rel="stylesheet" media="screen" href="../IncludeForTesting/fuse.css">
+  <link rel="stylesheet" media="screen" href="./styles.css">
+</head>
+<body class="local">
+
+<div class="l-container">
+
+<!-- START -->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+  
+  function formatError(errString) {
+    return '<span class="api-error"><strong>' + errString + '</strong></span>';
+  }
+  function apiError() {
+    return formatError('An error occurred, please reload the page');
+  }
+  function formatLoading() {
+    // Note: doesn't work yet
+    // return '<div class="api-loading"><img src="./images/loading.gif" /></div>';
+    return '&nbsp;';
+  }
+
+  $(document).ready(function() {
+    var api_host = window.location.protocol + '//' + window.location.host;
+    var api_token = $('meta[name="auth-token"]', parent.document ).attr('content');
+    var api_basepath = '/api/v3.1';
+
+    // Intro learning plan
+    var learning_plan_id = 10551;
+
+    var api_path = '/learning_plans/' + learning_plan_id;
+    var api_url = api_host + api_basepath + api_path;
+    var api_data = { auth_token : api_token };
+
+    // How To community id
+    var community_id = 21597
+    var community_basepath = '/communities/' + community_id;
+    var community_url = api_host + community_basepath;
+    $('#community-link a').attr('href',community_url);
+    $('#community-link a').attr('title','How To community — find your support here');
+
+    var request = $.ajax({
+      url: api_url,
+      method: 'GET',
+      data: api_data,
+      dataType: 'json'
+    });
+    request.done(function(data) {
+      var learning_plan = data.learning_plan;
+      // console.log('howto-tile success', learning_plan);
+      var thumbnail_url = learning_plan.thumbnail_2x_url.replace('http://','https://');
+      $('#featured-item-focus .featured-title').html(learning_plan.title);
+      $('#featured-item-focus a').attr('href',api_host + '/learning/plans/' + learning_plan.id);
+      $('#featured-item-focus a').attr('title',learning_plan.title);
+      $('#featured-item-focus .featured-thumbnail').css(
+        'background-image',
+        'url("' + thumbnail_url + '")'
+      );
+      if (learning_plan.progress > 0) {
+        $('#howto-tile').removeClass('initial');
+      }
+      $('#featured-item-focus .featured-progress .percent-complete').css('width',learning_plan.progress + '%');
+      $('#featured-item-focus .featured-progress .percent').html(learning_plan.progress + '%');
+      if (learning_plan.progress > 85) {
+        $('#featured-item-focus .featured-progress .percent').css('left','86%');
+      } else if (learning_plan.progress > 15) {
+        $('#featured-item-focus .featured-progress .percent').css('left',(learning_plan.progress-12) + '%');
+      }
+    });
+    request.fail(function(jqXHR, textStatus) {
+      // console.log('howto-tile fail', textStatus);
+      $('#featured-item-focus .featured-title').html(apiError());
+    });
+  });
+
+</script>
+	
+<div id="howto-tile" class="widget-container initial">
+  
+  <div id="featured-items">
+    <div id="featured-item-focus" class="featured-item featured-learning_plan">
+      <a href="#" title="Learning plan" target="_parent">
+        <span class="inner">
+          <span class="featured-type">Learning Plan</span>
+          <span class="featured-title">Loading...</span>
+          <span class="featured-progress">
+            <div class="percent">0%</div>
+            <div class="percent-complete">&nbsp;</div>
+          </span>
+          <span class="featured-thumbnail">&nbsp;</span>
+        </span>
+      </a>
+    </div>
+  </div>
+  <div id="community-link">
+    <a href="#" title="How To community — find your support here" target="_parent">
+      <span class="inner">
+        <span class="community-type">How To Community</span>
+      </span>
+    </a>
+  </div>
+
+</div>
+
+<!-- END -->
+
+</div>
+
+</body>
+</html>
