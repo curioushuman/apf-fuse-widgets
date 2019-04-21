@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+  <link rel="stylesheet" media="screen" href="../../lib/fuse.css">
+  <link rel="stylesheet" media="screen" href="./styles.css">
+</head>
+<body class="local">
+
+<!-- Other local stuff -->
+
+<script type="text/javascript" src="./data-local.js"></script>
+<script type="text/javascript">
+
+var is_local = true;
+
+</script>
+
+<!-- END Other local stuff -->
+
+<div class="l-container">
+
+<!-- START -->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    var community_id = 20250;
+    var api_host = window.location.protocol + '//' + window.location.host;
+    var api_basepath = '/api/v3.1';
+    var api_token = $('meta[name="auth-token"]', parent.document ).attr('content');
+    var api_path = '/communities/' + community_id + '/learning_plans';
+    var api_url = api_host + api_basepath + api_path;
+    var api_data = { auth_token : api_token };
+    api_data.per_page = 100;
+
+    // $('#items').html(formatLoading());
+    var request_learning_plans = $.ajax({
+      url: api_url,
+      method: 'GET',
+      data: api_data,
+      dataType: 'json'
+    });
+    request_learning_plans.done(function(data) {
+      // console.log('community-learning_plans learning_plans success', data.learning_plans);
+      populateLearningPlans(data.learning_plans);
+    });
+    request_learning_plans.fail(function(jqXHR, textStatus) {
+      // console.log('community-featured learning_plans fail', textStatus);
+      if (is_local === true) {
+				populateLearningPlans(data_local.learning_plans);
+			} else {
+				$('#items').html(apiError());
+			}
+    });
+
+    function populateLearningPlans(learning_plans) {
+      learning_plans.sort(sortByTitle);
+      var items = $('#items');
+      var item_template = $('#item-template');
+      var item_has_focus = false;
+      $.each(learning_plans, function(index, learning_plan) {
+        var item_base = item_template.clone();
+        item_base.attr('id','learning_plan-' + learning_plan.id);
+        var thumbnail_url = learning_plan.thumbnail_url.replace('http://','https://');
+        $('.item-title',item_base).html(learning_plan.title);
+        $('a',item_base).attr('href',api_host + '/learning/plans/' + learning_plan.id);
+        // @TODO - you'll need to grab each learning plan on it's own if you want the description
+        // $('.item-description',item_base).html(learning_plan.description);
+        // set active
+        if (item_has_focus === false) {
+          if (learning_plan.progress === 0) {
+            // if first one hasn't been started, set it to be active
+            item_base.addClass('active');
+            thumbnail_url = learning_plan.thumbnail_2x_url.replace('http://','https://');
+            item_has_focus = true;
+          } else if (
+            learning_plan.progress > 0 &&
+            learning_plan.progress < 100
+          ) {
+            // otherwise look for the first one that has been started, and not finished
+            item_base.addClass('active');
+            thumbnail_url = learning_plan.thumbnail_2x_url.replace('http://','https://');
+            item_has_focus = true;
+          }
+        }
+        // set complete
+        if (learning_plan.progress === 100) {
+          item_base.addClass('complete');
+        }
+        // set progress
+        $('.item-progress .percent-complete',item_base).css('width',learning_plan.progress + '%');
+        $('.item-progress .percent',item_base).html(learning_plan.progress + '%');
+        if (learning_plan.progress > 93) {
+          $('.item-progress .percent',item_base).css('left','93%');
+        } else if (learning_plan.progress > 2) {
+          $('.item-progress .percent',item_base).css('left',(learning_plan.progress-4) + '%');
+        }
+        // set thumbnail
+        // @TODO - you might need to obtain the Learning Plan to get the better thumbnail URL
+        $('.item-thumbnail',item_base).css(
+          'background-image',
+          'url("' + thumbnail_url + '")'
+        );
+        // append to items
+        items.append(item_base);
+      });
+      item_template.css('display','none');
+    }
+    function sortByTitle(a, b){
+      var aTitle = a.title.toLowerCase();
+      var bTitle = b.title.toLowerCase();
+      return ((aTitle < bTitle) ? -1 : ((aTitle > bTitle) ? 1 : 0));
+    }
+    function formatError(errString) {
+      return '<span class="api-error"><strong>' + errString + '</strong></span>';
+    }
+    function apiError() {
+      return formatError('An error occurred, please reload the page');
+    }
+    function formatLoading() {
+      // Note: doesn't work yet
+      // return '<div class="api-loading"><img src="./images/loading.gif" /></div>';
+      return '&nbsp;';
+    }
+
+  });
+
+</script>
+
+<div id="#community-learning_plans" class="widget-container">
+  <div id="items"></div>
+  <div id="item-template" class="item learning_plan">
+    <a href="#" title="Learning plan" target="_parent">
+      <span class="inner">
+        <span class="item-thumbnail">&nbsp;</span>
+        <span class="item-text">
+          <span class="item-type">Learning Plan <strong>Completed</strong></span>
+          <span class="item-title">Loading...</span>
+          <span class="item-description">&nbsp;</span>
+          <span class="item-progress">
+            <div class="percent">0%</div>
+            <div class="percent-complete">&nbsp;</div>
+          </span>
+        </span>
+      </span>
+    </a>
+  </div>
+</div>
+
+<!-- END -->
+
+</div>
+
+</body>
+</html>

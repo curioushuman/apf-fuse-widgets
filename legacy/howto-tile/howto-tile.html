@@ -2,10 +2,21 @@
 <html>
 <head>
 	<title>Test</title>
-  <link rel="stylesheet" media="screen" href="../IncludeForTesting/fuse.css">
+  <link rel="stylesheet" media="screen" href="../../lib/fuse.css">
   <link rel="stylesheet" media="screen" href="./styles.css">
 </head>
 <body class="local">
+
+<!-- Other local stuff -->
+
+<script type="text/javascript" src="./data-local.js"></script>
+<script type="text/javascript">
+
+var is_local = true;
+
+</script>
+
+<!-- END Other local stuff -->
 
 <div class="l-container">
 
@@ -13,18 +24,6 @@
 
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
-  
-  function formatError(errString) {
-    return '<span class="api-error"><strong>' + errString + '</strong></span>';
-  }
-  function apiError() {
-    return formatError('An error occurred, please reload the page');
-  }
-  function formatLoading() {
-    // Note: doesn't work yet
-    // return '<div class="api-loading"><img src="./images/loading.gif" /></div>';
-    return '&nbsp;';
-  }
 
   $(document).ready(function() {
     var api_host = window.location.protocol + '//' + window.location.host;
@@ -54,35 +53,55 @@
     request.done(function(data) {
       var learning_plan = data.learning_plan;
       // console.log('howto-tile success', learning_plan);
-      var thumbnail_url = learning_plan.thumbnail_2x_url.replace('http://','https://');
-      $('#featured-item-focus .featured-title').html(learning_plan.title);
-      $('#featured-item-focus a').attr('href',api_host + '/learning/plans/' + learning_plan.id);
-      $('#featured-item-focus a').attr('title',learning_plan.title);
-      $('#featured-item-focus .featured-thumbnail').css(
-        'background-image',
-        'url("' + thumbnail_url + '")'
-      );
-      if (learning_plan.progress > 0) {
-        $('#howto-tile').removeClass('initial');
-      }
-      $('#featured-item-focus .featured-progress .percent-complete').css('width',learning_plan.progress + '%');
-      $('#featured-item-focus .featured-progress .percent').html(learning_plan.progress + '%');
-      if (learning_plan.progress > 85) {
-        $('#featured-item-focus .featured-progress .percent').css('left','86%');
-      } else if (learning_plan.progress > 15) {
-        $('#featured-item-focus .featured-progress .percent').css('left',(learning_plan.progress-12) + '%');
-      }
+      populateFeaturedLearningPlan(learning_plan);
     });
     request.fail(function(jqXHR, textStatus) {
       // console.log('howto-tile fail', textStatus);
-      $('#featured-item-focus .featured-title').html(apiError());
+			if (is_local === true) {
+				populateFeaturedLearningPlan(data_local.learning_plan);
+			} else {
+				$('#featured-item-focus .featured-title').html(apiError());
+			}
     });
-  });
+
+		function populateFeaturedLearningPlan(learning_plan) {
+			var thumbnail_url = learning_plan.thumbnail_2x_url.replace('http://','https://');
+			$('#featured-item-focus .featured-title').html(learning_plan.title);
+			$('#featured-item-focus a').attr('href',api_host + '/learning/plans/' + learning_plan.id);
+			$('#featured-item-focus a').attr('title',learning_plan.title);
+			$('#featured-item-focus .featured-thumbnail').css(
+				'background-image',
+				'url("' + thumbnail_url + '")'
+			);
+			if (learning_plan.progress > 0) {
+				$('#howto-tile').removeClass('initial');
+			}
+			$('#featured-item-focus .featured-progress .percent-complete').css('width',learning_plan.progress + '%');
+			$('#featured-item-focus .featured-progress .percent').html(learning_plan.progress + '%');
+			if (learning_plan.progress > 85) {
+				$('#featured-item-focus .featured-progress .percent').css('left','86%');
+			} else if (learning_plan.progress > 15) {
+				$('#featured-item-focus .featured-progress .percent').css('left',(learning_plan.progress-12) + '%');
+			}
+		}
+		function formatError(errString) {
+			return '<span class="api-error"><strong>' + errString + '</strong></span>';
+		}
+		function apiError() {
+			return formatError('An error occurred, please reload the page');
+		}
+		function formatLoading() {
+			// Note: doesn't work yet
+			// return '<div class="api-loading"><img src="./images/loading.gif" /></div>';
+			return '&nbsp;';
+		}
+
+	});
 
 </script>
-	
+
 <div id="howto-tile" class="widget-container initial">
-  
+
   <div id="featured-items">
     <div id="featured-item-focus" class="featured-item featured-learning_plan">
       <a href="#" title="Learning plan" target="_parent">

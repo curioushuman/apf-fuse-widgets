@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test</title>
+  <link rel="stylesheet" media="screen" href="../../lib/fuse.css">
+  <link rel="stylesheet" media="screen" href="./styles.css">
+</head>
+<body class="local">
+
+<!-- Other local stuff -->
+
+<script type="text/javascript" src="./data-local.js"></script>
+<script type="text/javascript">
+
+var is_local = true;
+
+</script>
+
+<!-- END Other local stuff -->
+
+<div class="l-container">
+
+<!-- START -->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/jquery.placeholder.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var api_host = window.location.protocol + '//' + window.location.host;
+    var api_token = $('meta[name="auth-token"]',parent.document).attr('content');
+    var api_basepath = '/api/v3.1';
+
+    var community_id_howto = 21597;
+    var user_id_howto_community_manager = 10353460;
+
+    var api_path = '/contents/question';
+    var api_url = api_host + api_basepath + api_path;
+    var api_data = { auth_token : api_token };
+
+    // additional info for question submission
+    api_data.community_ids = [community_id_howto];
+    api_data['share_attributes[user_ids]'] = [user_id_howto_community_manager]
+
+    // links to other places
+    // How To community URL
+    var community_id_howto = 21597
+    var community_basepath = '/communities/' + community_id_howto;
+    var community_url_howto = api_host + community_basepath;
+    $('#community-link a').attr('href',community_url_howto);
+    // FAQ URL
+    var topic_id_howto_faq = 54711;
+    var topic_url_howto_faq = api_host + '/topics/' + topic_id_howto_faq;
+    $('#community-link-faq a').attr('href',topic_url_howto_faq);
+    // Resource library
+    // re-add this later when there is mor ehere
+    // var url_library = api_host + '/topics/my_topics';
+    // $('#community-link-library a').attr('href',url_library);
+    // placeholder for resource ilrbary
+    var url_introduction = api_host + '/learning/plans/10551';
+    $('#community-link-library a').attr('href',url_introduction);
+
+    // placeholder backup for older browsers
+    $('textarea').placeholder();
+
+    // asking a question
+    $('#howto-question-form-button').on('click', function() {
+      var question_name = $('#howto-question-form #question-name');
+      var question_description = $('#howto-question-form #question-description');
+      var validation_error_message = $('#howto-question-form .validation-error-message');
+      var api_error_message = $('#howto-question-form .api-error-message');
+      api_data.name = question_name.val();
+      api_data.description = question_description.val();
+      var validation_error = false;
+      if (api_data.name === '') {
+        validation_error = true;
+        question_name.addClass('validation-error');
+      } else {
+        question_name.removeClass('validation-error');
+      }
+      if (api_data.description === '') {
+        validation_error = true;
+        question_description.addClass('validation-error');
+      } else {
+        question_description.removeClass('validation-error');
+      }
+      if (validation_error === true) {
+        validation_error_message.css('display', 'inline');
+      } else {
+        question_name.attr('disabled',true);
+        question_description.attr('disabled',true);
+        validation_error_message.css('display', 'none');
+        var request = $.ajax({
+          url: api_url,
+          method: 'POST',
+          data: JSON.stringify(api_data),
+          dataType: 'json',
+          contentType:'application/json; charset=utf-8'
+        });
+        request.done(function(data, status) {
+          // console.log('howto-question woop', data);
+          $('#howto-question-success').css('display', 'block');
+          $('#howto-question-form').css('display', 'none');
+        });
+        request.fail(function(jqXHR, textStatus) {
+          // console.log('howto-question fail', textStatus);
+          question_name.attr('disabled',false);
+          question_description.attr('disabled',false);
+          api_error_message.css('display', 'inline');
+        });
+      }
+    });
+  });
+
+</script>
+
+<div id="howto-question" class="widget-container">
+  <p class="widget-title">
+    Have a question?
+  </p>
+  <div id="community-link-faq" class="community-link">
+    <a href="#" title="How To FAQ - find your answers here" target="_parent">
+      <span class="inner">
+        <span class="community-type">How To FAQ</span>
+      </span>
+    </a>
+  </div>
+  <div id="community-link-library" class="community-link">
+    <a href="#" title="How To FAQ - find your reources here" target="_parent">
+      <span class="inner">
+        <span class="community-type">How To Introduction<!-- Resource Library --></span>
+      </span>
+    </a>
+  </div>
+  <div id="community-link" class="community-link">
+    <a href="#" title="How To FAQ - find your support here" target="_parent">
+      <span class="inner">
+        <span class="community-type">How To Community</span>
+      </span>
+    </a>
+  </div>
+  <div id="howto-question-form">
+    <div class="inner">
+      <div class="question-form-question">
+        <textarea name="question" id="question-name" placeholder="Or ask your question here"></textarea>
+        <textarea name="description" id="question-description" placeholder="And add any additional information you might have, to help us find an answer"></textarea>
+      </div>
+      <div class="question-form-options">
+        <span class="validation-error-message">Please provide both question and detail</span>
+        <span class="api-error-message">An error occurred, try asking again.</span>
+        <span id="howto-question-form-button" class="button">Ask</span>
+      </div>
+    </div>
+  </div>
+  <div id="howto-question-success">
+    <p><strong>Thank you, your question has been submitted</strong></p>
+    <p>Someone will provide an answer as soon as they can.</p>
+  </div>
+</div>
+
+<!-- END -->
+
+</div>
+
+</body>
+</html>
