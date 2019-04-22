@@ -18,7 +18,6 @@ let FeaturedItemFocus = {
         this.learning_plan = data_local.learning_plan
         this.href = api_host + '/learning/plans/' + data_local.learning_plan.id
         this.background_image_url = 'url("' + thumbnail_url + '")'
-        console.log(this.learning_plan.progress)
         this.$emit('update-progress', this.learning_plan.progress > 0)
 
     }
@@ -47,7 +46,6 @@ new Vue({
     },
     methods: {
         updateProgress: function (isProgress) {
-            console.log('here', isProgress)
           this.progress = isProgress
         }
       }
