@@ -41,7 +41,9 @@
               learning_plan.title
             }}</span>            
             <span class="featured-progress">
-              <div class="percent">{{learning_plan.progress}}%</div>
+              <div v-if="learning_plan.progress > 85" class="percent"  :style="{ left: 86 + '%' }">{{learning_plan.progress}}%</div>
+              <div v-else-if="learning_plan.progress > 15" class="percent"  :style="{ left: learning_plan.progress - 12 + '%' }">{{learning_plan.progress}}%</div>
+              <div v-else class="percent">{{learning_plan.progress}}%</div>
               <div class="percent-complete" :style="{ width: learning_plan.progress + '%' }">&nbsp;</div>
             </span>
             <span class="featured-thumbnail" :style="{ background: background_image_url }">&nbsp;</span>
