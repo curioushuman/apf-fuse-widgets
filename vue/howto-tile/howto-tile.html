@@ -42,7 +42,7 @@
             }}</span>            
             <span class="featured-progress">
               <div class="percent">{{learning_plan.progress}}%</div>
-              <div class="percent-complete">&nbsp;</div>
+              <div class="percent-complete" :style="{ width: learning_plan.progress + '%' }">&nbsp;</div>
             </span>
             <span class="featured-thumbnail" :style="{ background: background_image_url }">&nbsp;</span>
           </span>
