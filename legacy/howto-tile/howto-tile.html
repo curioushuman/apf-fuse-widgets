@@ -78,11 +78,16 @@ var is_local = true;
 			}
 			$('#featured-item-focus .featured-progress .percent-complete').css('width',learning_plan.progress + '%');
 			$('#featured-item-focus .featured-progress .percent').html(learning_plan.progress + '%');
-			if (learning_plan.progress > 85) {
+      
+      // don't understand what below does 
+      
+      if (learning_plan.progress > 85) {
 				$('#featured-item-focus .featured-progress .percent').css('left','86%');
 			} else if (learning_plan.progress > 15) {
 				$('#featured-item-focus .featured-progress .percent').css('left',(learning_plan.progress-12) + '%');
-			}
+      }
+      
+      // to here
 		}
 		function formatError(errString) {
 			return '<span class="api-error"><strong>' + errString + '</strong></span>';
