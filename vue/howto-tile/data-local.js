@@ -17,4 +17,4 @@ var data_local = {
       "reset_date": null
     }
   }
-};
+}
