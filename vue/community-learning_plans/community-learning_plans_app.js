@@ -35,8 +35,6 @@ let CommunityLearningPlansListItem = {
                 return ('left: ' + 93 + '%')
             } else if (this.learningPlanItemProgress > 2) {
                 return ('left: ' + (this.learningPlanItemProgress - 4) + '%')
-            } else {
-                return ('left: ' + this.learningPlanItemProgress + '%')
             }
         },
         chooseThumbnail: function () {
