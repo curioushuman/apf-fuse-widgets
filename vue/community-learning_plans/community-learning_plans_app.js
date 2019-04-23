@@ -22,8 +22,7 @@ let CommunityLearningPlansList = {
     template: '#community-learning_plans_list-template',
     data() {
         return {
-            learningPlans: [],
-            href_base: ''
+            learningPlans: []
         }
     },
     components: {
@@ -31,7 +30,6 @@ let CommunityLearningPlansList = {
     },
     created() {
         // fake api call
-        const api_host = window.location.protocol + '//' + window.location.host
         this.learningPlans = data_local.learning_plans
             ;
     },
