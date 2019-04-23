@@ -20,7 +20,7 @@
     <!-- START -->
 
     <!-- main HTML -->
-    <community-learning_plans_list-item class="l-container">
+    <div class="l-container">
       <div id="community-learning_plans" class="widget-container">
         <community-learning_plans_list></community-learning_plans_list>
       </div>
@@ -29,10 +29,11 @@
         type="text/x-template"
         id="community-learning_plans_list-template"
       >
-      <div>
-        <community-learning_plans_list-item v-for="item in testitems" :key="item.id">
-        </community-learning_plans_list-item>
-      </div>
+        <div>
+          <community-learning_plans_list-item v-for="learning_plan in learningPlansSorted" :key="learning_plan.id"
+          :name="learning_plan.title">
+          </community-learning_plans_list-item>
+        </div>
       </script>
 
       <script
@@ -47,7 +48,7 @@
                   <span class="item-type"
                   >Learning Plan <strong>Completed</strong></span
                   >
-                  <span class="item-title">Loading...</span>
+                  <span class="item-title">{{ name }}</span>
                   <span class="item-description">&nbsp;</span>
                   <span class="item-progress">
                     <div class="percent">0%</div>

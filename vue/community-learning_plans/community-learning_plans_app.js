@@ -1,17 +1,39 @@
 let CommunityLearningPlansListItem = {
-    template: '#community-learning_plans_list-item-template'
+    template: '#community-learning_plans_list-item-template',
+    props: {
+        name: {
+            type: String,
+            default: 'Loading...'
+        },
+    },
 }
 
 let CommunityLearningPlansList = {
     template: '#community-learning_plans_list-template',
     data() {
         return {
-            testitems: [1,2,3,4,5]
+            learningPlans: []
         }
     },
     components: {
         'community-learning_plans_list-item': CommunityLearningPlansListItem
-    }
+    },
+    created() {
+        // fake api call
+        const api_host = window.location.protocol + '//' + window.location.host
+        this.learningPlans = data_local.learning_plans
+            ;
+    },
+    computed: {
+        learningPlansSorted: function () {
+            function compare(a, b) {
+                var aTitle = a.title.toLowerCase();
+                var bTitle = b.title.toLowerCase();
+                return ((aTitle < bTitle) ? -1 : ((aTitle > bTitle) ? 1 : 0));
+            }
+            return this.learningPlans.sort(compare);
+        }
+    },
 }
 
 new Vue({
