@@ -43,6 +43,9 @@ let CommunityLearningPlansListItem = {
             } else {
                 return ('background-image: url(' + this.thumbnailUrls.thumbnail1x) + ')'
             }
+        },
+        percentBarWidth: function () {
+            return 'width: ' + this.learningPlanItemProgress + '%'
         }
     },
 }
