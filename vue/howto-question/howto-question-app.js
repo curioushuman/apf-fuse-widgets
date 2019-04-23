@@ -9,7 +9,18 @@ let CommunityLink = {
     template: '#community-link-template'
 }
 let howtoQuestionForm = {
-    template: '#howto-question-form-template'
+    template: '#howto-question-form-template',
+    data() {
+        return {
+            question: 'Or ask your question here',
+            description: 'And add any additional information you might have, to help us find an answer'
+        }
+    },
+    methods: {
+        submitClicked: function () {
+            alert(this.question + '\n\n' + this.description)
+        }
+    }
 }
 let howtoQuestionSuccess = {
     template: '#howto-question-success-template'

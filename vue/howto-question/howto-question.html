@@ -80,14 +80,14 @@
         <div class="inner">
           <div class="question-form-question">
             <textarea
+            v-model="question"
             name="question"
             id="question-name"
-            placeholder="Or ask your question here"
             ></textarea>
             <textarea
+            v-model="description"
             name="description"
             id="question-description"
-            placeholder="And add any additional information you might have, to help us find an answer"
             ></textarea>
           </div>
           <div class="question-form-options">
@@ -97,7 +97,7 @@
             <span class="api-error-message"
             >An error occurred, try asking again.</span
             >
-            <span id="howto-question-form-button" class="button">Ask</span>
+            <span id="howto-question-form-button" class="button" @click="submitClicked()">Ask</span>
           </div>
         </div>
       </div>
