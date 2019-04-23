@@ -18,32 +18,36 @@
     <!-- END Other local stuff -->
 
     <!-- START -->
-    
+
     <!-- main HTML -->
     <div class="l-container">
       <div id="community-learning_plans" class="widget-container">
-        <div id="items"></div>
-        <div id="item-template" class="item learning_plan">
-          <a href="#" title="Learning plan" target="_parent">
-            <span class="inner">
-              <span class="item-thumbnail">&nbsp;</span>
-              <span class="item-text">
-                <span class="item-type"
-                >Learning Plan <strong>Completed</strong></span
-                >
-                <span class="item-title">Loading...</span>
-                <span class="item-description">&nbsp;</span>
-                <span class="item-progress">
-                  <div class="percent">0%</div>
-                  <div class="percent-complete">&nbsp;</div>
+        <community-learning_plans_items></community-learning_plans_items>
+      </div>
+
+      <script
+        type="text/x-template"
+        id="community-learning_plans_items-template"
+      >
+        <div class="item learning_plan">
+            <a href="#" title="Learning plan" target="_parent">
+              <span class="inner">
+                <span class="item-thumbnail">&nbsp;</span>
+                <span class="item-text">
+                  <span class="item-type"
+                  >Learning Plan <strong>Completed</strong></span
+                  >
+                  <span class="item-title">Loading...</span>
+                  <span class="item-description">&nbsp;</span>
+                  <span class="item-progress">
+                    <div class="percent">0%</div>
+                    <div class="percent-complete">&nbsp;</div>
+                  </span>
                 </span>
               </span>
-            </span>
-          </a>
-        </div>
-      </div>
-      
-      <script type="text/javascript"></script>
+            </a>
+          </div>
+      </script>
 
       <!-- END -->
     </div>
