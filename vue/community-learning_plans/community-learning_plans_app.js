@@ -1,3 +1,5 @@
+
+// Vue component for the items in the list
 let CommunityLearningPlansListItem = {
     template: '#community-learning_plans_list-item-template',
     props: {
@@ -50,6 +52,7 @@ let CommunityLearningPlansListItem = {
     },
 }
 
+// vue component for the list of all items
 let CommunityLearningPlansList = {
     template: '#community-learning_plans_list-template',
     data() {
@@ -93,6 +96,7 @@ let CommunityLearningPlansList = {
     },
 }
 
+// main vue instance
 new Vue({
     el: '#community-learning_plans',
     components: {
