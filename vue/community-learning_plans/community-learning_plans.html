@@ -20,14 +20,24 @@
     <!-- START -->
 
     <!-- main HTML -->
-    <div class="l-container">
+    <community-learning_plans_list-item class="l-container">
       <div id="community-learning_plans" class="widget-container">
-        <community-learning_plans_items></community-learning_plans_items>
+        <community-learning_plans_list></community-learning_plans_list>
       </div>
 
       <script
         type="text/x-template"
-        id="community-learning_plans_items-template"
+        id="community-learning_plans_list-template"
+      >
+      <div>
+        <community-learning_plans_list-item v-for="item in testitems" :key="item.id">
+        </community-learning_plans_list-item>
+      </div>
+      </script>
+
+      <script
+        type="text/x-template"
+        id="community-learning_plans_list-item-template"
       >
         <div class="item learning_plan">
             <a href="#" title="Learning plan" target="_parent">
