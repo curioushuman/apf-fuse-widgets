@@ -14,6 +14,9 @@ let CommunityLearningPlansListItem = {
         },
         learningPlanItemProgress: {
             type: Number
+        },
+        thumbnailUrls: {
+            type: Object
         }
     },
     computed: {
@@ -34,6 +37,13 @@ let CommunityLearningPlansListItem = {
                 return ('left: ' + (this.learningPlanItemProgress - 4) + '%')
             } else {
                 return ('left: ' + this.learningPlanItemProgress + '%')
+            }
+        },
+        chooseThumbnail: function () {
+            if (this.isFocused) {
+                return ('background-image: url(' + this.thumbnailUrls.thumbnail2x)  + ')'
+            } else {
+                return ('background-image: url(' + this.thumbnailUrls.thumbnail1x) + ')'
             }
         }
     },

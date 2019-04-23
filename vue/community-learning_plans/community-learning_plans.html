@@ -31,7 +31,14 @@
       >
         <div>
           <community-learning_plans_list-item v-for="learning_plan_item in learningPlansSorted" :key="learning_plan_item.id"
-          :name="learning_plan_item.title" :learning_plan_item_id="learning_plan_item.id" :focusedLearningPlan="focusedLearningPlan" :learningPlanItemProgress="learning_plan_item.progress">
+            :name="learning_plan_item.title"
+            :learning_plan_item_id="learning_plan_item.id"
+            :focusedLearningPlan="focusedLearningPlan"
+            :learningPlanItemProgress="learning_plan_item.progress"
+            :thumbnailUrls="{
+              thumbnail1x: learning_plan_item.thumbnail_url,
+              thumbnail2x: learning_plan_item.thumbnail_2x_url
+            }">
           </community-learning_plans_list-item>
         </div>
       </script>
@@ -43,7 +50,7 @@
         <div class="item learning_plan" :class="{active: isFocused, complete: isCompleted}">
             <a :href="buildHref" title="Learning plan" target="_parent">
               <span class="inner">
-                <span class="item-thumbnail">&nbsp;</span>
+                <span class="item-thumbnail" :style="chooseThumbnail">&nbsp;</span>
                 <span class="item-text">
                   <span class="item-type"
                   >Learning Plan <strong>Completed</strong></span
