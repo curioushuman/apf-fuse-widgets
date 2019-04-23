@@ -8,12 +8,33 @@ let CommunityLearningPlansListItem = {
         learning_plan_item_id: {
             type: Number,
             default: 0
+        },
+        focusedLearningPlan: {
+            type: String
+        },
+        learningPlanItemProgress: {
+            type: Number
         }
     },
     computed: {
         buildHref: function () {
             const api_host = window.location.protocol + '//' + window.location.host
             return api_host + 'learning/plans/' + this.learning_plan_item_id
+        },
+        isFocused: function () {
+            return this.name === this.focusedLearningPlan
+        },
+        isCompleted: function () {
+            return this.learningPlanItemProgress === 100
+        },
+        percentNumberLocation: function () {            
+            if (this.learningPlanItemProgress > 93) {
+                return ('left: ' + 93 + '%')
+            } else if (this.learningPlanItemProgress > 2) {
+                return ('left: ' + (this.learningPlanItemProgress - 4) + '%')
+            } else {
+                return ('left: ' + this.learningPlanItemProgress + '%')
+            }
         }
     },
 }
@@ -22,7 +43,8 @@ let CommunityLearningPlansList = {
     template: '#community-learning_plans_list-template',
     data() {
         return {
-            learningPlans: []
+            learningPlans: [],
+            focusedLearningPlan: null
         }
     },
     components: {
@@ -30,8 +52,8 @@ let CommunityLearningPlansList = {
     },
     created() {
         // fake api call
-        this.learningPlans = data_local.learning_plans
-            ;
+        this.learningPlans = data_local.learning_plans;
+        this.findFocusedLearningPlan;
     },
     computed: {
         learningPlansSorted: function () {
@@ -41,6 +63,21 @@ let CommunityLearningPlansList = {
                 return ((aTitle < bTitle) ? -1 : ((aTitle > bTitle) ? 1 : 0));
             }
             return this.learningPlans.sort(compare);
+        },
+        findFocusedLearningPlan: function () {
+            for (let i = 0; i < this.learningPlansSorted.length; i++) {
+                if (!this.focusedLearningPlan) {
+                    const current_learning_plan = this.learningPlansSorted[i];
+                    if (current_learning_plan.progress === 0) {
+                        this.focusedLearningPlan = current_learning_plan.title
+                        return
+                    } else if (current_learning_plan.progress > 0 && current_learning_plan.progress < 100) {
+                        this.focusedLearningPlan = current_learning_plan.title
+                        return
+                    }
+
+                }
+            }
         }
     },
 }

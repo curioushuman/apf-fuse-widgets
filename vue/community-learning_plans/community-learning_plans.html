@@ -31,7 +31,7 @@
       >
         <div>
           <community-learning_plans_list-item v-for="learning_plan_item in learningPlansSorted" :key="learning_plan_item.id"
-          :name="learning_plan_item.title" :learning_plan_item_id="learning_plan_item.id">
+          :name="learning_plan_item.title" :learning_plan_item_id="learning_plan_item.id" :focusedLearningPlan="focusedLearningPlan" :learningPlanItemProgress="learning_plan_item.progress">
           </community-learning_plans_list-item>
         </div>
       </script>
@@ -40,7 +40,7 @@
         type="text/x-template"
         id="community-learning_plans_list-item-template"
       >
-        <div class="item learning_plan">
+        <div class="item learning_plan" :class="{active: isFocused, complete: isCompleted}">
             <a :href="buildHref" title="Learning plan" target="_parent">
               <span class="inner">
                 <span class="item-thumbnail">&nbsp;</span>
@@ -51,8 +51,8 @@
                   <span class="item-title">{{ name }}</span>
                   <span class="item-description">&nbsp;</span>
                   <span class="item-progress">
-                    <div class="percent">0%</div>
-                    <div class="percent-complete">&nbsp;</div>
+                    <div class="percent" :style="percentNumberLocation">{{ learningPlanItemProgress }}%</div>
+                    <div class="percent-complete" :style="{ width: learningPlanItemProgress + '%' }">&nbsp;</div>
                   </span>
                 </span>
               </span>
