@@ -5,6 +5,16 @@ let CommunityLearningPlansListItem = {
             type: String,
             default: 'Loading...'
         },
+        learning_plan_item_id: {
+            type: Number,
+            default: 0
+        }
+    },
+    computed: {
+        buildHref: function () {
+            const api_host = window.location.protocol + '//' + window.location.host
+            return api_host + 'learning/plans/' + this.learning_plan_item_id
+        }
     },
 }
 
@@ -12,7 +22,8 @@ let CommunityLearningPlansList = {
     template: '#community-learning_plans_list-template',
     data() {
         return {
-            learningPlans: []
+            learningPlans: [],
+            href_base: ''
         }
     },
     components: {
