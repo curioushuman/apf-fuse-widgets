@@ -23,75 +23,96 @@
         <p class="widget-title">
           Have a question?
         </p>
-        <div id="community-link-faq" class="community-link">
+        <community-link-faq></community-link-faq>
+        <community-link-library></community-link-library>
+        <community-link></community-link>
+        <howto-question-form></howto-question-form>
+        <howto-question-success></howto-question-success>
+      </div>
+    </div>
+
+    <script type="text/x-template" id="community-link-faq-template">
+      <div class="community-link">
+        <a
+          href="#"
+          title="How To FAQ - find your answers here"
+          target="_parent"
+        >
+          <span class="inner">
+            <span class="community-type">How To FAQ</span>
+          </span>
+        </a>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="community-link-library-template">
+        <div class="community-link">
           <a
-            href="#"
-            title="How To FAQ - find your answers here"
-            target="_parent"
+          href="#"
+          title="How To FAQ - find your reources here"
+          target="_parent"
           >
-            <span class="inner">
-              <span class="community-type">How To FAQ</span>
-            </span>
-          </a>
-        </div>
-        <div id="community-link-library" class="community-link">
+          <span class="inner">
+            <span class="community-type"
+            >How To Introduction<!-- Resource Library --></span
+            >
+          </span>
+        </a>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="community-link-template">
+        <div class="community-link">
           <a
-            href="#"
-            title="How To FAQ - find your reources here"
-            target="_parent"
+          href="#"
+          title="How To FAQ - find your support here"
+          target="_parent"
           >
-            <span class="inner">
-              <span class="community-type"
-                >How To Introduction<!-- Resource Library --></span
-              >
-            </span>
-          </a>
-        </div>
-        <div id="community-link" class="community-link">
-          <a
-            href="#"
-            title="How To FAQ - find your support here"
-            target="_parent"
-          >
-            <span class="inner">
-              <span class="community-type">How To Community</span>
-            </span>
-          </a>
-        </div>
-        <div id="howto-question-form">
-          <div class="inner">
-            <div class="question-form-question">
-              <textarea
-                name="question"
-                id="question-name"
-                placeholder="Or ask your question here"
-              ></textarea>
-              <textarea
-                name="description"
-                id="question-description"
-                placeholder="And add any additional information you might have, to help us find an answer"
-              ></textarea>
-            </div>
-            <div class="question-form-options">
-              <span class="validation-error-message"
-                >Please provide both question and detail</span
-              >
-              <span class="api-error-message"
-                >An error occurred, try asking again.</span
-              >
-              <span id="howto-question-form-button" class="button">Ask</span>
-            </div>
+          <span class="inner">
+            <span class="community-type">How To Community</span>
+          </span>
+        </a>
+      </div>
+    </script>
+
+    <script type="text/x-template" id="howto-question-form-template">
+      <div>
+        <div class="inner">
+          <div class="question-form-question">
+            <textarea
+            name="question"
+            id="question-name"
+            placeholder="Or ask your question here"
+            ></textarea>
+            <textarea
+            name="description"
+            id="question-description"
+            placeholder="And add any additional information you might have, to help us find an answer"
+            ></textarea>
+          </div>
+          <div class="question-form-options">
+            <span class="validation-error-message"
+            >Please provide both question and detail</span
+            >
+            <span class="api-error-message"
+            >An error occurred, try asking again.</span
+            >
+            <span id="howto-question-form-button" class="button">Ask</span>
           </div>
         </div>
-        <div id="howto-question-success">
-          <p><strong>Thank you, your question has been submitted</strong></p>
-          <p>Someone will provide an answer as soon as they can.</p>
-        </div>
       </div>
+    </script>
 
-      <!-- END -->
-    </div>
+    <script type="text/x-template" id="howto-question-success-template">
+      <div>
+        <p><strong>Thank you, your question has been submitted</strong></p>
+        <p>Someone will provide an answer as soon as they can.</p>
+      </div>
+    </script>
+
+    <!-- END -->
     <!-- Vue CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="howto-question-app.js"></script>
   </body>
 </html>
