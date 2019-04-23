@@ -24,15 +24,11 @@
       <div id="community-learning_plans" class="widget-container">
         <community-learning_plans_list></community-learning_plans_list>
       </div>
-
-      
-      
-      <!-- END -->
     </div>
-    <script
-      type="text/x-template"
-      id="community-learning_plans_list-template"
-    >
+    <!-- END -->
+
+    <!-- template for the whole community-learning_plans_list -->
+    <script type="text/x-template" id="community-learning_plans_list-template">
       <div>
         <community-learning_plans_list-item v-for="learning_plan_item in learningPlansSorted" :key="learning_plan_item.id"
           :name="learning_plan_item.title"
@@ -47,6 +43,7 @@
       </div>
     </script>
 
+    <!-- template for the individual community-learning_plans_list items -->
     <script
       type="text/x-template"
       id="community-learning_plans_list-item-template"
@@ -71,6 +68,7 @@
         </div>
     </script>
 
+    <!-- Vue CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="community-learning_plans_app.js"></script>
   </body>
