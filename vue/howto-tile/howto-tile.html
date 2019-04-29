@@ -10,19 +10,22 @@
 
     <script type="text/javascript" src="./data-local.js"></script>
     <script type="text/javascript" src="../../shared.js"></script>
-    <script type="text/javascript">
-      var is_local = true;
-    </script>
 
     <!-- END Other local stuff -->
 
     <div class="l-container">
       <!-- START -->
       <!-- main html section -->
-      <div id="howto-tile" class="widget-container" :class="{ initial: !progress }">
+      <div
+        id="howto-tile"
+        class="widget-container"
+        :class="{ initial: !progress }"
+      >
         <div id="featured-items">
           <!-- featured item component -->
-          <featured-item-focus @update-progress="updateProgress"></featured-item-focus>
+          <featured-item-focus
+            @update-progress="updateProgress"
+          ></featured-item-focus>
         </div>
         <!-- community link component -->
         <community-link></community-link>
@@ -39,7 +42,7 @@
             <span class="featured-type">Learning Plan</span>
             <span class="featured-title">{{
               learning_plan.title
-            }}</span>            
+            }}</span>
             <span class="featured-progress">
               <div v-if="learning_plan.progress > 85" class="percent"  :style="{ left: 86 + '%' }">{{learning_plan.progress}}%</div>
               <div v-else-if="learning_plan.progress > 15" class="percent"  :style="{ left: learning_plan.progress - 12 + '%' }">{{learning_plan.progress}}%</div>

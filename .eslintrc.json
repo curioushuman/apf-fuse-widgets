@@ -12,7 +12,8 @@
         "ecmaVersion": 2018
     },
     "plugins": [
-        "vue"
+        "vue",
+        "html"
     ],
     "rules": {
     }
