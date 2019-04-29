@@ -1,0 +1,24 @@
+{
+  "name": "apf-fuse-widgets",
+  "version": "1.0.0",
+  "description": "Custom widgets for APF",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/curioushuman/apf-fuse-widgets.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/curioushuman/apf-fuse-widgets/issues"
+  },
+  "homepage": "https://github.com/curioushuman/apf-fuse-widgets#readme"
+}
