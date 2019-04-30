@@ -1,63 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Test</title>
-	<link rel="stylesheet" media="screen" href="../../lib/fuse.css">
-  <link rel="stylesheet" media="screen" href="./styles.css">
-</head>
-<body class="local">
+  <head>
+    <title>Test</title>
+    <link rel="stylesheet" media="screen" href="../../lib/fuse.css" />
+    <link rel="stylesheet" media="screen" href="./styles.css" />
+  </head>
+  <body class="local">
+    <!-- Other local stuff -->
 
-<!-- Other local stuff -->
+    <script type="text/javascript" src="./data-local.js"></script>
 
-<script type="text/javascript" src="./data-local.js"></script>
-<script type="text/javascript">
+    <!-- END Other local stuff -->
 
-var is_local = true;
-
-</script>
-
-<!-- END Other local stuff -->
-
-<div class="l-container">
-
-<!-- START -->
-
-<div id="community-featured" class="widget-container">
-  <div id="community-link">
-    <a href="#" title="Title" target="_parent">
-      <span class="inner">
-        <span class="community-type">Your Community</span>
-        <span class="community-title">Loading...</span>
-        <span class="community-description">&nbsp;</span>
-        <span class="community-partner">
-          In association with
-          <span class="community-partner-logo">
-            <img src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/CESR-logo-white-circle.png" alt="Center for Economic and Social Rights logo" />
-          </span>
-        </span>
-      </span>
-    </a>
-  </div>
-  <div id="featured-items">
-    <div id="featured-item-focus" class="featured-item featured-learning_plan">
-      <a href="#" title="Learning plan" target="_parent">
-        <span class="inner">
-          <span class="featured-type">Learning Plan</span>
-          <span class="featured-title">Loading...</span>
-          <span class="featured-progress">
-            <div class="percent">0%</div>
-            <div class="percent-complete">&nbsp;</div>
-          </span>
-          <span class="featured-thumbnail">&nbsp;</span>
-        </span>
-      </a>
+    <div class="l-container">
+      <!-- START -->
+      <community-featured></community-featured>
     </div>
-  </div>
-</div>
 
-<!-- END -->
+    <div id="community-featured" class="widget-container">
+      <div id="community-link">
+        <a href="#" title="Title" target="_parent">
+          <span class="inner">
+            <span class="community-type">Your Community</span>
+            <span class="community-title">Loading...</span>
+            <span class="community-description">&nbsp;</span>
+            <span class="community-partner">
+              In association with
+              <span class="community-partner-logo">
+                <img
+                  src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/CESR-logo-white-circle.png"
+                  alt="Center for Economic and Social Rights logo"
+                />
+              </span>
+            </span>
+          </span>
+        </a>
+      </div>
+      <div id="featured-items">
+        <div
+          id="featured-item-focus"
+          class="featured-item featured-learning_plan"
+        >
+          <a href="#" title="Learning plan" target="_parent">
+            <span class="inner">
+              <span class="featured-type">Learning Plan</span>
+              <span class="featured-title">Loading...</span>
+              <span class="featured-progress">
+                <div class="percent">0%</div>
+                <div class="percent-complete">&nbsp;</div>
+              </span>
+              <span class="featured-thumbnail">&nbsp;</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
 
-</div>
-
-</body>
+    <!-- END -->
+  </body>
 </html>
