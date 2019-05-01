@@ -34,44 +34,8 @@
       <!-- END -->
     </div>
 
-    <!-- template for featured item focus component -->
-    <script type="text/x-template" id="featured-item-focus-template">
-      <div class="featured-item featured-learning_plan">
-        <a :href="href" :title="learning_plan.title" target="_parent">
-          <span class="inner">
-            <span class="featured-type">Learning Plan</span>
-            <span class="featured-title">{{
-              learning_plan.title
-            }}</span>
-            <span class="featured-progress">
-              <div v-if="learning_plan.progress > 85" class="percent"  :style="{ left: 86 + '%' }">{{learning_plan.progress}}%</div>
-              <div v-else-if="learning_plan.progress > 15" class="percent"  :style="{ left: learning_plan.progress - 12 + '%' }">{{learning_plan.progress}}%</div>
-              <div v-else class="percent">{{learning_plan.progress}}%</div>
-              <div class="percent-complete" :style="{ width: learning_plan.progress + '%' }">&nbsp;</div>
-            </span>
-            <span class="featured-thumbnail" :style="{ background: background_image_url }">&nbsp;</span>
-          </span>
-        </a>
-      </div>
-    </script>
-
-    <!-- template for community link -->
-    <script type="text/x-template" id="community-link-template">
-      <div id="community-link">
-        <a
-          href="#"
-          title="How To community — find your support here"
-          target="_parent"
-        >
-          <span class="inner">
-            <span class="community-type">How To Community</span>
-          </span>
-        </a>
-      </div>
-    </script>
-
     <!-- Vue CDN -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <script src="app.js"></script>
+    <script src="howto-tile-app.js" type="module"></script>
   </body>
 </html>

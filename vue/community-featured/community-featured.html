@@ -14,10 +14,13 @@
 
     <div class="l-container">
       <!-- START -->
-      <community-featured></community-featured>
+      <div id="community-featured" class="widget-container">
+        <community-link></community-link>
+        <featured-items></featured-items>
+      </div>
     </div>
 
-    <div id="community-featured" class="widget-container">
+    <script type="text/x-template" id="community-link-template">
       <div id="community-link">
         <a href="#" title="Title" target="_parent">
           <span class="inner">
@@ -36,6 +39,9 @@
           </span>
         </a>
       </div>
+    </script>
+
+    <script type="text/x-template" id="featured-items-template">      
       <div id="featured-items">
         <div
           id="featured-item-focus"
@@ -54,8 +60,11 @@
           </a>
         </div>
       </div>
-    </div>
+    </script>
 
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="community-featured-app.js"></script>
     <!-- END -->
   </body>
 </html>
