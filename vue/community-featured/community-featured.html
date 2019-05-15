@@ -14,48 +14,56 @@
 
     <div class="l-container">
       <!-- START -->
-      <community-featured></community-featured>
+      <div id="community-featured" class="widget-container">
+        <community-link></community-link>
+        <featured-items></featured-items>
+      </div>
     </div>
 
-    <div id="community-featured" class="widget-container">
+    <script type="text/x-template" id="community-link-template">
       <div id="community-link">
-        <a href="#" title="Title" target="_parent">
+        <a :href="href" :title="community.name" target="_parent">
           <span class="inner">
             <span class="community-type">Your Community</span>
-            <span class="community-title">Loading...</span>
-            <span class="community-description">&nbsp;</span>
+            <span class="community-title">{{ community.name }}</span>
+            <span class="community-description" v-html="community.description"></span>
             <span class="community-partner">
               In association with
               <span class="community-partner-logo">
                 <img
-                  src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/CESR-logo-white-circle.png"
-                  alt="Center for Economic and Social Rights logo"
+                src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/CESR-logo-white-circle.png"
+                alt="Center for Economic and Social Rights logo"
                 />
               </span>
             </span>
           </span>
         </a>
       </div>
-      <div id="featured-items">
-        <div
+    </script>
+
+    <script type="text/x-template" id="featured-items-template">
+        <div id="featured-items">
+          <div
           id="featured-item-focus"
           class="featured-item featured-learning_plan"
-        >
-          <a href="#" title="Learning plan" target="_parent">
+          >
+          <a :href="href" :title="focusedLearningPlan.title" target="_parent">
             <span class="inner">
               <span class="featured-type">Learning Plan</span>
-              <span class="featured-title">Loading...</span>
+              <span class="featured-title">{{ focusedLearningPlan.title }}</span>
               <span class="featured-progress">
-                <div class="percent">0%</div>
-                <div class="percent-complete">&nbsp;</div>
+                <div class="percent" :style="percentNumberLocation">{{ focusedLearningPlan.progress }}%</div>
+                <div class="percent-complete" :style="percentBarWidth">&nbsp;</div>
               </span>
-              <span class="featured-thumbnail">&nbsp;</span>
+              <span class="featured-thumbnail" :style="setThumbnail">&nbsp;</span>
             </span>
           </a>
         </div>
       </div>
-    </div>
+    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="community-featured-app.js"></script>
     <!-- END -->
   </body>
 </html>
