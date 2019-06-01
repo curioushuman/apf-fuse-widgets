@@ -1,1 +1,39 @@
-<!DOCTYPE html><html lang=en><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><title>apftest2</title><link href=/css/app.css rel=preload as=style><link href=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/app.js rel=preload as=script><link href=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/chunk-vendors.js rel=preload as=script><link href=/css/app.css rel=stylesheet></head><body><noscript><strong>We're sorry but apftest2 doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript><div id=app></div><script src=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/chunk-vendors.js></script><script src=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/app.js></script></body></html>
+<!DOCTYPE html>
+<html lang=en>
+    <head>
+        <meta charset=utf-8>
+        <meta http-equiv=X-UA-Compatible content="IE=edge">
+        <meta name=viewport content="width=device-width,initial-scale=1">
+        <title>howto-tile</title>
+        <link href=/css/app.css rel=preload as=style>
+
+        <!-- these just preload the javascript,
+            but it isn't big enough for us to worry,
+            esp if you cant change the header anyway?
+            I mean presumably we could put them in the body,
+            but I couldn't find if that would work?
+              
+            <link href=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/app.js rel=preload as=script>
+            <link href=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/chunk-vendors.js rel=preload as=script>
+        -->
+        <link href=/css/app.css rel=stylesheet></head>
+        <body>
+            <!-- important? I DON'T KNOW MIKEE?! -->
+            <noscript>
+                <strong>We're sorry but howto-tile doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+            </noscript>
+
+            <!-- this goes in every HTML -->
+            <div id=app></div>
+
+            <!-- these two follow the same format for every widget
+                https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/{widget name}/js/chunk-vendors.js
+                https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/{widget name}/js/app.js
+                
+                I can also make these one file,
+                but I don't know the repurcussions of that Mikee
+            -->
+            <script src=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/chunk-vendors.js></script>
+            <script src=https://cdn.jsdelivr.net/gh/timothybk/apf-js-stash/howto-tile/js/app.js></script>
+        </body>
+        </html>
