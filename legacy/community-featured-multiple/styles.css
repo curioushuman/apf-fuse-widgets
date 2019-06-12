@@ -1,0 +1,321 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+div.l-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.local {
+  padding: 50px;
+}
+body.local div.l-container {
+  width: 630px;
+  height: 380px;
+}
+
+span.button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: background 0.3s, color 0.3s;
+  -moz-transition: background 0.3s, color 0.3s;
+  -o-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+  padding: 0 10px;
+  margin: 0;
+  vertical-align: top;
+  background: #3187b3;
+  height: 30px;
+  line-height: 29px;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  border: 0;
+  border-bottom: 1px solid;
+  border-bottom-color: #26698b;
+}
+
+/*Testing*/
+span.button {
+  visibility: hidden;
+}
+
+.api-error {
+  background-color: #fff;
+  color: #CF205D;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  width: 100%;
+  display: block;
+}
+.api-error strong {
+  padding: 5px;
+  display: block;
+}
+
+.api-loading {
+
+}
+
+.widget-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #d9d9d9;
+
+  /*-webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #fff;*/
+}
+
+#community-single {
+  display: none;
+}
+
+#community-multiple {
+  display: none;
+  height: 380px;
+}
+
+#community-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 65%;
+  height: 100%;
+  background: transparent;
+}
+#community-link.community-link {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 190px;
+  background: transparent;
+  margin-bottom: 10px;
+}
+#community-link a,
+#community-link.community-link a {
+  display: block;
+  padding-right: 38px;
+  margin-right: 10px;
+  height: 100%;
+  text-decoration: none;
+  background: #006EB2 no-repeat url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/arrow-small-double-white-2x.png") 98% 10px;
+  background-size: 19px 18px;
+  position: relative;
+}
+#community-link.community-link a {
+  margin-right: 0px;
+}
+#community-link a:hover,
+#community-link.community-link a:hover {
+  background-color: #004e7f;
+}
+#community-link a .inner,
+#community-link.community-link a .inner {
+  padding: 10px;
+  margin-right: 10px;
+}
+#community-link span,
+#community-link.community-link span {
+  display: block;
+}
+.community-type {
+  color: #fff;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+.community-title {
+  color: #fff;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.community-description {
+  color: #fff;
+}
+.community-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  text-align: right;
+}
+.community-button span.button {
+  color: #004e7f;
+  background: #fff;
+  border-bottom-color: #26698b;
+}
+#community-link span.community-partner,
+#community-link.community-link span.community-partner {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 180px;
+  height: 70px;
+  line-height: 70px;
+  color: #fff;
+
+  display: none;
+}
+.community-partner-logo {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+}
+span.community-partner-escr .community-partner-logo {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background-color: #fff;
+}
+.community-partner img {
+  width: 100%;
+  height: 100%;
+}
+#featured-items {
+  position: absolute;
+  top: 0;
+  left: 65%;
+  width: 35%;
+  height: 100%;
+}
+.featured-item {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.featured-item span {
+  display: block;
+}
+.featured-item a {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  position: relative;
+  background-color: #F2F2F3;
+  background-image: url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/hatch-2x.png");
+  background-size: 15px 15px;
+  background-repeat: repeat;
+}
+.featured-item a:hover {
+  background-color: #e5e5e7;
+}
+.featured-item a .inner  {
+  position: relative;
+  height: 100%;
+  background-image: url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/arrow-small-single-blue-2x.png");
+  background-position: 95% 10px;
+  background-size: 10px 18px;
+  background-repeat: no-repeat;
+}
+.featured-type {
+  padding: 10px;
+  text-transform: uppercase;
+  color: rgba(38, 39, 43, 0.6);
+}
+.featured-title {
+  color: #000;
+  padding: 10px;
+  font-size: 14px;
+  /*font-weight: bold;*/
+}
+.featured-button {
+  position: absolute;
+  bottom: 80px;
+  right: 10px;
+  padding: 0;
+  margin: 0;
+}
+.featured-button span.button {
+  color: #fff;
+  background: #006EB2;
+  border-bottom-color: #26698b;
+}
+.featured-progress {
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  bottom: 80px;
+  left: 0;
+  background-color: #e5e5e7;
+}
+.featured-progress .percent-complete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #006EB2;
+}
+.featured-progress .percent {
+  position: absolute;
+  top: -18px;
+  left: 5px;
+  font-size: 100%;
+  color: rgba(38, 39, 43, 0.6);
+}
+.featured-thumbnail {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 80px;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-image: url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/escr-kids-lp.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+}

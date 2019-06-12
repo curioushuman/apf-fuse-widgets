@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test</title>
+	<link rel="stylesheet" media="screen" href="../../lib/fuse.css">
+  <link rel="stylesheet" media="screen" href="./styles.css">
+</head>
+<body class="local">
+
+<!-- Other local stuff -->
+
+<script type="text/javascript" src="./data-local.js"></script>
+<script>
+  /* eslint-disable */
+</script>
+<script type="text/javascript">
+/* eslint-disable */
+var is_local = true;
+
+</script>
+
+<!-- END Other local stuff -->
+
+<div class="l-container">
+
+<!-- START -->
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+/* eslint-disable */
+
+	// init vars
+	var community_id_afn = 21387;
+	var community_id_escr = 20250;
+	var community_id_welcome = 19933;
+	var community_id_nhris_in_action = 23821;
+	var community_id_how_to = 21597;
+
+  function sortByTitle(a, b){
+    var aTitle = a.title.toLowerCase();
+    var bTitle = b.title.toLowerCase();
+    return ((aTitle < bTitle) ? -1 : ((aTitle > bTitle) ? 1 : 0));
+  }
+  function formatError(errString) {
+    return '<span class="api-error"><strong>' + errString + '</strong></span>';
+  }
+  function apiError() {
+    return formatError('An error occurred, please reload the page');
+  }
+  function formatLoading() {
+    // Note: doesn't work yet
+    // return '<div class="api-loading"><img src="./images/loading.gif" /></div>';
+    return '&nbsp;';
+  }
+	function findLearningPlanFocus(learning_plans) {
+		var learning_plan_focus = false;
+		learning_plans.sort(sortByTitle);
+		$.each(learning_plans, function(index, learning_plan) {
+			// check the first one for it being equal to 0
+			// this means we haven't started anything
+			// so focus on this one
+			if (!learning_plan_focus) {
+				if (learning_plan.progress === 0) {
+					learning_plan_focus = learning_plan;
+				} else if (
+					// if the first one is not 0
+					// find the first available that is started, and not finished
+					learning_plan.progress > 0 &&
+					learning_plan.progress < 100
+				) {
+					learning_plan_focus = learning_plan;
+				}
+			}
+		});
+		return learning_plan_focus;
+	}
+  function populateCommunityLink(community) {
+    var community_link = $('#community-link');
+    $('a',community_link).attr('href',community.url);
+    $('a',community_link).attr('title',community.name);
+    $('.community-title',community_link).html(community.name);
+    $('.community-description',community_link).html(community.description);
+		if (community.id === community_id_escr) {
+			$('.community-partner-cesr', community_link).css('display','block');
+		} else if (community.id === community_id_nhris_in_action) {
+			$('.community-partner-ohchr', community_link).css('display','block');
+		}
+  }
+	function cloneCommunityLink(community) {
+		var community_link = $('#community-link').clone();
+		community_link.addClass('community-link');
+		$('a',community_link).attr('href',community.url);
+    $('a',community_link).attr('title',community.name);
+    $('.community-title',community_link).html(community.name);
+    $('.community-description',community_link).html(community.description);
+		if (community.id === community_id_escr) {
+			$('.community-partner-cesr', community_link).css('display','block');
+		} else if (community.id === community_id_nhris_in_action) {
+			$('.community-partner-ohchr', community_link).css('display','block');
+		}
+		community_link.appendTo('#community-featured-multiple');
+	}
+  function populateFeaturedLearningPlan(learning_plan) {
+    // @TODO - you might need to obtain the Learning Plan to get the better thumbnail URL
+
+    var thumbnail_url = learning_plan.thumbnail_url.replace('http://','https://');
+    var featured_item_focus = $('#featured-item-focus');
+    $('.featured-title',featured_item_focus).html(learning_plan.title);
+    $('a',featured_item_focus).attr('href',learning_plan.url);
+    $('a',featured_item_focus).attr('title',learning_plan.title);
+    $('.featured-thumbnail',featured_item_focus).css(
+      'background-image',
+      'url("' + thumbnail_url + '")'
+    );
+    $('.featured-progress .percent-complete',featured_item_focus).css('width',learning_plan.progress + '%');
+    $('.featured-progress .percent',featured_item_focus).html(learning_plan.progress + '%');
+    if (learning_plan.progress > 85) {
+      $('.featured-progress .percent',featured_item_focus).css('left','86%');
+    } else if (learning_plan.progress > 15) {
+      $('.featured-progress .percent',featured_item_focus).css('left',(learning_plan.progress-12) + '%');
+    }
+  }
+
+  $(document).ready(function() {
+
+    var api_host = window.location.protocol + '//' + window.location.host;
+    var api_basepath = '/api/v3.1';
+    var api_token = $('meta[name="auth-token"]', parent.document ).attr('content');
+    var api_data = { auth_token : api_token };
+    var api_data_list = api_data;
+    api_data_list.per_page = 100;
+    $.ajaxSetup({
+      type: 'GET',
+      data: api_data,
+      dataType: 'json'
+    });
+
+    // init vars
+    var user_current;
+    var community_featured;
+
+    // grab the user
+    var api_path = '/users/me';
+    var api_url = api_host + api_basepath + api_path;
+
+    var request_user = $.ajax({
+      url: api_url
+    });
+    request_user.fail(function(jqXHR, textStatus) {
+			if (is_local === true) {
+				// KIM LOOK HERE!!!!!
+				// This is the local stuff, and the functions that you may require
+				// populate community
+				// var community = data_local.community;
+	      // community.url = api_host + '/communities/' + community.id;
+	      // populateCommunityLink(community);
+				// // populate the learning plans
+				// var learning_plan_focus = findLearningPlanFocus(data_local.learning_plans);
+				// if (!learning_plan_focus) {
+				// 	$('#featured-items').css('display','none');
+				// 	$('#community-link').css('width','100%');
+				// } else {
+				// 	learning_plan_focus.url = api_host + '/learning/plans/' + learning_plan_focus.id;
+				// 	populateFeaturedLearningPlan(learning_plan_focus);
+				// }
+
+				// testing the multiple communities
+				$('#community-multiple').css('display','block');
+				var communities = data_local.communities;
+				$.each(communities, function(index, community) {
+					cloneCommunityLink(community);
+				});
+				$('#community-link.community-link').css('height','124px');
+
+			} else {
+				console.log('community-featured user fail', textStatus);
+	      $('#community-link .community-title').html(apiError());
+			}
+    });
+
+    var request_user_communities = request_user.then(function(user) {
+
+      // console.log('community-featured user success', user);
+      user_current = user;
+
+      api_path = '/users/' + user.id + '/communities';
+      api_url = api_host + api_basepath + api_path;
+      return $.ajax({
+        url: api_url,
+        data: api_data_list
+      });
+    });
+    request_user_communities.fail(function(jqXHR, textStatus) {
+			if (is_local === false) {
+	      console.log('community-featured user communities fail', textStatus);
+	      $('#community-link .community-title').html(apiError());
+			}
+    });
+
+    var request_community = request_user_communities.then(function(data) {
+			// cycle through the communities and remove the Welcome to
+			// @TODO : If you find it, send a request to remove the user from it
+
+			var communities = [];
+
+			// cycle through communities, looking for AFN or ESCR
+      $.each(data.communities, function(index, community) {
+				if (community.id === community_id_welcome) {
+					// this is where you could asynchronously remove them
+				} else if (community.id === community_id_how_to) {
+					// don't do anything, we don't need to list this community
+        } else {
+					communities.push(community);
+          community_featured = community;
+				}
+      });
+
+			if (communities.length > 1) {
+				$('#community-multiple').css('display','block');
+				if (communities.length > 2) {
+					$('#community-link').css('height','124px');
+				}
+				$.each(communities, function(index, community) {
+					community.url = api_host + '/communities/' + community.id;
+					cloneCommunityLink(community);
+				});
+			} else {
+				$('#community-single').css('display','block');
+				// we have to find the community separately
+				// because this response doesn't include the bloody description!!!
+				api_path = '/communities/' + community_featured.id;
+				api_url = api_host + api_basepath + api_path;
+				return $.ajax({
+					url: api_url,
+					data: api_data_list
+				});
+			}
+    });
+    request_community.fail(function(jqXHR, textStatus) {
+			if (is_local === false) {
+	      console.log('community-featured community fail', textStatus);
+	      $('#community-link .community-title').html(apiError());
+			}
+    });
+
+    var request_learning_plans = request_community.then(function(community) {
+
+      // populate community
+      community.url = api_host + '/communities/' + community.id;
+      populateCommunityLink(community);
+
+      // find the learning plans
+      api_path = '/communities/' + community.id + '/learning_plans';
+      api_url = api_host + api_basepath + api_path;
+      return $.ajax({
+        url: api_url,
+        data: api_data_list
+      });
+    });
+    request_learning_plans.fail(function(jqXHR, textStatus) {
+			if (is_local === false) {
+	      console.log('community-featured learning_plans fail', textStatus);
+	      $('#featured-item-focus .featured-title').html(apiError());
+			}
+    });
+    request_learning_plans.done(function(data) {
+      // console.log('community-featured learning_plans success', data.learning_plans);
+			var learning_plan_focus = findLearningPlanFocus(data.learning_plans);
+			if (!learning_plan_focus) {
+				$('#featured-items').css('display','none');
+				$('#community-link').css('width','100%');
+			} else {
+				learning_plan_focus.url = api_host + '/learning/plans/' + learning_plan_focus.id;
+				populateFeaturedLearningPlan(learning_plan_focus);
+			}
+    });
+
+  });
+
+</script>
+
+<div id="community-single">
+
+	<div id="community-featured" class="widget-container">
+	  <div id="community-link">
+	    <a href="#" title="Title" target="_parent">
+	      <span class="inner">
+	        <span class="community-type">Your Community</span>
+	        <span class="community-title">Loading...</span>
+	        <span class="community-description">&nbsp;</span>
+	        <span class="community-partner community-partner-cesr">
+	          In association with
+	          <span class="community-partner-logo">
+	            <img src="https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/CESR-logo-white-circle.png" alt="Center for Economic and Social Rights logo" />
+	          </span>
+	        </span>
+					<span class="community-partner community-partner-ohchr">
+	          In association with
+	          <span class="community-partner-logo">
+	            <img src="images/OHCHR.png" alt="OHCHR" />
+	          </span>
+	        </span>
+	      </span>
+	    </a>
+	  </div>
+	  <div id="featured-items">
+	    <div id="featured-item-focus" class="featured-item featured-learning_plan">
+	      <a href="#" title="Learning plan" target="_parent">
+	        <span class="inner">
+	          <span class="featured-type">Learning Plan</span>
+	          <span class="featured-title">Loading...</span>
+	          <span class="featured-progress">
+	            <div class="percent">0%</div>
+	            <div class="percent-complete">&nbsp;</div>
+	          </span>
+	          <span class="featured-thumbnail">&nbsp;</span>
+	        </span>
+	      </a>
+	    </div>
+	  </div>
+	</div>
+
+</div>
+
+<div id="community-multiple">
+
+	<div id="community-featured-multiple" class="widget-container">
+
+	</div>
+
+</div>
+
+<!-- END -->
+
+</div>
+
+</body>
+</html>
