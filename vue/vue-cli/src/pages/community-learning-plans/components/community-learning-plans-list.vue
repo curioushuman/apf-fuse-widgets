@@ -28,7 +28,7 @@ export default {
   components: {
     "community-learning-plans-list-item": CommunityLearningPlansListItem
   },
-  created: function created() {
+  mounted() {
     // fake api call
     this.learningPlans = data_local.learning_plans;
     this.findFocusedLearningPlan();
