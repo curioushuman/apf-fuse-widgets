@@ -57,6 +57,8 @@ export default {
         return "left: " + 93 + "%";
       } else if (this.learningPlanItemProgress > 2) {
         return "left: " + (this.learningPlanItemProgress - 4) + "%";
+      } else {
+        return "left: " + this.learningPlanItemProgress + "%";
       }
     },
     chooseThumbnail: function chooseThumbnail() {
@@ -71,7 +73,5 @@ export default {
     }
   }
 };
-</script>
-
-<style>
+</script><style>
 </style>
