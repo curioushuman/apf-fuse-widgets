@@ -8,9 +8,9 @@
       :focusedLearningPlan="focusedLearningPlan"
       :learningPlanItemProgress="learning_plan_item.progress"
       :thumbnailUrls="{
-            thumbnail1x: learning_plan_item.thumbnail_url,
-            thumbnail2x: learning_plan_item.thumbnail_2x_url
-          }"
+        thumbnail1x: learning_plan_item.thumbnail_url,
+        thumbnail2x: learning_plan_item.thumbnail_2x_url
+      }"
     ></community-learning-plans-list-item>
   </div>
 </template>
@@ -31,25 +31,10 @@ export default {
   created: function created() {
     // fake api call
     this.learningPlans = data_local.learning_plans;
-    this.findFocusedLearningPlan;
+    this.findFocusedLearningPlan();
   },
-  computed: {
-    learningPlansSorted: function learningPlansSorted() {
-      /**
-       * identifies how to sort two learningPlans.
-       * @param {object} a The first learningPlan.
-       * @param {object} b The second learningPlan.
-       * @return {int} The number for sort function.
-       */
-      function compare(a, b) {
-        var aTitle = a.title.toLowerCase();
-        var bTitle = b.title.toLowerCase();
-        return aTitle < bTitle ? -1 : aTitle > bTitle ? 1 : 0;
-      }
-
-      return this.learningPlans.sort(compare);
-    },
-    findFocusedLearningPlan: function findFocusedLearningPlan() {
+  methods: {
+    findFocusedLearningPlan() {
       for (var i = 0; i < this.learningPlansSorted.length; i++) {
         if (!this.focusedLearningPlan) {
           var currentLearningPlan = this.learningPlansSorted[i];
@@ -67,9 +52,25 @@ export default {
         }
       }
     }
+  },
+  computed: {
+    learningPlansSorted: function learningPlansSorted() {
+      /**
+       * identifies how to sort two learningPlans.
+       * @param {object} a The first learningPlan.
+       * @param {object} b The second learningPlan.
+       * @return {int} The number for sort function.
+       */
+      function compare(a, b) {
+        var aTitle = a.title.toLowerCase();
+        var bTitle = b.title.toLowerCase();
+        return aTitle < bTitle ? -1 : aTitle > bTitle ? 1 : 0;
+      }
+
+      return this.learningPlans.slice(0).sort(compare);
+    }
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -1,11 +1,11 @@
 <template>
-<body class="local">
-  <div class="l-container">
-    <div id="community-learning-plans" class="widget-container">
-      <community-learning-plans-list></community-learning-plans-list>
+  <body class="local">
+    <div class="l-container">
+      <div id="community-learning-plans" class="widget-container">
+        <community-learning-plans-list></community-learning-plans-list>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </template>
 
 <script>
@@ -18,5 +18,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
