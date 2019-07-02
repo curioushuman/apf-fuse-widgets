@@ -1,5 +1,8 @@
 <template>
-  <div class="item learning_plan" :class="{active: isFocused, complete: isCompleted}">
+  <div
+    class="item learning_plan"
+    :class="{ active: isFocused, complete: isCompleted }"
+  >
     <a :href="buildHref" title="Learning plan" target="_parent">
       <span class="inner">
         <span class="item-thumbnail" :style="chooseThumbnail">&nbsp;</span>
@@ -11,7 +14,9 @@
           <span class="item-title">{{ name }}</span>
           <span class="item-description">&nbsp;</span>
           <span class="item-progress">
-            <div class="percent" :style="percentNumberLocation">{{ learningPlanItemProgress }}%</div>
+            <div class="percent" :style="percentNumberLocation">
+              {{ learningPlanItemProgress }}%
+            </div>
             <div class="percent-complete" :style="percentBarWidth">&nbsp;</div>
           </span>
         </span>
@@ -58,7 +63,7 @@ export default {
       } else if (this.learningPlanItemProgress > 2) {
         return "left: " + (this.learningPlanItemProgress - 4) + "%";
       } else {
-        return "left: " + this.learningPlanItemProgress + "%";
+        return null;
       }
     },
     chooseThumbnail: function chooseThumbnail() {
@@ -73,5 +78,6 @@ export default {
     }
   }
 };
-</script><style>
-</style>
+</script>
+
+<style></style>
