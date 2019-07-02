@@ -1,0 +1,291 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+div.l-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  font-weight: normal;
+  font-style: normal;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.local {
+  padding: 50px;
+}
+body.local div.l-container {
+  width: 630px;
+  height: 630px;
+}
+
+.button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: middle;
+  zoom: 1;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: background 0.3s, color 0.3s;
+  -moz-transition: background 0.3s, color 0.3s;
+  -o-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+  padding: 0 10px;
+  margin: 0;
+  vertical-align: top;
+  background: #3187b3;
+  height: 30px;
+  line-height: 29px;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.3);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  border: 0;
+  border-bottom: 1px solid;
+  border-bottom-color: #26698b;
+}
+
+.api-error {
+  background-color: #fff;
+  color: #CF205D;
+  font-size: 14px;
+  font-weight: bold;
+  height: auto;
+  width: 100%;
+  display: block;
+}
+.api-error strong {
+  padding: 5px;
+  display: block;
+}
+
+.api-loading {
+  
+}
+
+.widget-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  background-color: #d9d9d9;
+
+/*  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #fff;*/
+}
+
+#community-learning_plans {
+
+}
+
+.item {
+  width: 100%;
+  height: 85px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.item.active {
+  height: 160px;
+}
+.item.complete {
+  height: 75px;
+}
+.item span {
+  display: block;
+}
+.item a {
+  display: block;
+  text-decoration: none;
+  height: 100%;
+  position: relative;
+  background-color: #F2F2F3;
+  background-image: url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/hatch-2x.png");
+  background-size: 15px 15px;
+  background-repeat: repeat;
+}
+.item.active a {
+  background-color: #006EB2;
+  background-image: none;
+}
+.item.complete a {
+  background-color: #e5e5e7;
+}
+.item a:hover {
+  background-color: #e5e5e7;
+}
+.item.active a:hover {
+  background-color: #004e7f;
+}
+.item a .inner  {
+  position: relative;
+  height: 100%;
+  background-image: url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/arrow-small-single-blue-2x.png");
+  background-position: 99% 10px;
+  background-size: 10px 18px;
+  background-repeat: no-repeat;
+}
+.item.active a .inner  {
+  background-image: url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/arrow-small-single-white-2x.png");
+}
+.item.complete a .inner  {
+  background-image: none;
+}
+.item-thumbnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0;
+  width: 23%;
+  height: 100%;
+  background: #fff no-repeat url("https://fusion-universal-assets-production.s3.amazonaws.com/file-host/09ae44be-7d40-44c4-b41a-d30f6f915b91--1403462748092636001-/1273/escr-kids-lp.jpg") 50% 50%;
+  background-size: 143px 107px;
+}
+.item.active .item-thumbnail {
+  width: 30%;
+  /*background-size: 286px 214px;*/
+  background-size: 214px 160px;
+}
+.item.complete .item-thumbnail {
+  visibility: hidden;
+}
+.item-text {
+  position: absolute;
+  top: 0px;
+  overflow: hidden;
+  height: 100%;
+  left: 23%;
+  width: 77%;
+}
+.item.active .item-text {
+  left: 30%;
+  width: 70%;
+}
+.item.complete .item-text {
+  left: 0;
+  width: 100%;
+}
+.item-type {
+  text-transform: uppercase;
+  color: rgba(38, 39, 43, 0.6);
+  padding-top: 10px;
+  padding-left: 10px;
+}
+.item-type strong {
+  visibility: hidden;
+  color: #006EB2;
+}
+.item.active .item-type {
+  color: #fff;
+}
+.item.complete .item-type strong {
+  visibility: visible;
+}
+.item-title {
+  color: #000;
+  font-size: 14px;
+  /*font-weight: bold;*/
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.item.active .item-title {
+  color: #fff;
+}
+.item.complete .item-title {
+  font-weight: normal;
+  color: rgba(38, 39, 43, 0.6);
+}
+.item-description {
+  visibility: hidden;
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+.item.active .item-description {
+  visibility: visible;
+}
+.item-progress {
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  background-color: #e5e5e7;
+}
+.item.active .item-progress {
+  background-color: #004e7f;
+}
+.item-progress .percent-complete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: #006EB2;
+}
+.item.active .item-progress .percent-complete {
+  background-color: #fff;
+}
+.item-progress .percent {
+  position: absolute;
+  top: -18px;
+  left: 10px;
+  font-size: 100%;
+  color: rgba(38, 39, 43, 0.6);
+}
+.item.active .item-progress .percent {
+  color: #fff;
+}
+.item-button {
+  position: absolute;
+  bottom: 80px;
+  right: 10px;
+  padding: 0;
+  margin: 0;
+
+  visibility: hidden;
+}
+.item.active .item-button {
+  display: none;
+}
+.item-button span.button {
+  color: #006EB2;
+  background: #fff;
+  border-bottom-color: #26698b;
+}
+#item-template {
+  display: none;
+}
