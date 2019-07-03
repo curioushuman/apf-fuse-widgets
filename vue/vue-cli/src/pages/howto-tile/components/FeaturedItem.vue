@@ -4,15 +4,11 @@
       <span class="inner">
         <span class="featured-type">Learning Plan</span>
         <span v-if="!errorState" class="featured-title">
-          {{
-          learning_plan.title
-          }}
+          {{ learning_plan.title }}
         </span>
         <span v-else class="api-error">
           <strong>
-            {{
-            learning_plan.title
-            }}
+            {{ learning_plan.title }}
           </strong>
         </span>
         <span class="featured-progress">
@@ -20,16 +16,29 @@
             v-if="learning_plan.progress > 85"
             class="percent"
             :style="{ left: 86 + '%' }"
-          >{{ learning_plan.progress }}%</div>
+          >
+            {{ learning_plan.progress }}%
+          </div>
           <div
             v-else-if="learning_plan.progress > 15"
             class="percent"
             :style="{ left: learning_plan.progress - 12 + '%' }"
-          >{{ learning_plan.progress }}%</div>
+          >
+            {{ learning_plan.progress }}%
+          </div>
           <div v-else class="percent">{{ learning_plan.progress }}%</div>
-          <div class="percent-complete" :style="{ width: learning_plan.progress + '%' }">&nbsp;</div>
+          <div
+            class="percent-complete"
+            :style="{ width: learning_plan.progress + '%' }"
+          >
+            &nbsp;
+          </div>
         </span>
-        <span class="featured-thumbnail" :style="{ background: background_image_url }">&nbsp;</span>
+        <span
+          class="featured-thumbnail"
+          :style="{ background: background_image_url }"
+          >&nbsp;</span
+        >
       </span>
     </a>
   </div>
@@ -75,4 +84,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style></style>
