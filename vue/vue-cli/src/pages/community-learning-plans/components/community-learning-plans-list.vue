@@ -16,7 +16,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import CommunityLearningPlansListItem from "./community-learning-plans-list-item";
 import data_local from "../assets/data-local";
 export default {
@@ -30,25 +30,20 @@ export default {
     "community-learning-plans-list-item": CommunityLearningPlansListItem
   },
   mounted() {
-    /******fake api call too large must be done properly or locally */
     // const apiHost = window.location.protocol + "//" + window.location.host;
 
-    // axios
-    //   .get(
-    //     "https://my-json-server.typicode.com/timothybk/apf-js-stash/fake-data"
-    //   )
-    //   .then(response => {
-    //     this.learning_plans = {
-    //       ...response.data.community_learning_plans
-    //     };
-    //   })
-    //   .then(() => {
-    //     this.findFocusedLearningPlan();
-    //   });
-
-    // fake api call
-    this.learningPlans = data_local.learning_plans;
-    this.findFocusedLearningPlan();
+    axios
+      .get(
+        "https://my-json-server.typicode.com/timothybk/apf-js-stash/community_learning_plans"
+      )
+      .then(() => {
+        // temporary until api plugged in
+        this.learningPlans = data_local.learning_plans;
+        this.findFocusedLearningPlan();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   },
   methods: {
     findFocusedLearningPlan() {
