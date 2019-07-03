@@ -55,7 +55,7 @@ export default {
 
     axios
       .get(
-        "https://my-json-server.typicode.com/timothybk/apf-js-stash/learning_plan"
+        "https://my-json-server.typicode.com/timothybk/apf-js-stash/howto-tile"
       )
       .then(response => {
         const thumbnailUrl = response.data.thumbnail_2x_url.replace(
