@@ -49,7 +49,7 @@ export default {
   computed: {
     buildHref: function buildHref() {
       var apiHost = window.location.protocol + "//" + window.location.host;
-      return apiHost + "learning/plans/" + this.learning_plan_item_id;
+      return apiHost + "/learning/plans/" + this.learning_plan_item_id;
     },
     isFocused: function isFocused() {
       return this.name === this.focusedLearningPlan;
